@@ -1,0 +1,14 @@
+services:
+  db:
+    image: postgres:14.5
+    environment:
+      POSTGRES_USER: changelog
+      POSTGRES_PASSWORD: secret
+      POSTGRES_DB: changelog
+    volumes:
+      - db:/var/lib/postgresql/data
+      - ./docker/provision/postgres/init:/docker-entrypoint-initdb.d
+    ports:
+      - "5432:5432"
+volumes:
+  db:
